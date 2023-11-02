@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -7,14 +8,28 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        children: [
-          _backgroundCover(context),
-          _boxForm(context),
-          _imageUser()
-        ],
+        children: [_backgroundCover(context), _boxForm(context), _imageUser(), _buttonBack(context)],
       ),
     );
   }
+}
+
+Widget _buttonBack(BuildContext context) {
+  return SafeArea(
+    child: Container(
+      margin: const EdgeInsets.only(top: 20, left: 10),
+      child: FloatingActionButton.small(
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.elliptical(10, 10))),
+        backgroundColor: Colors.white,
+        onPressed: () => Get.back(),
+        child: const Icon(
+        Icons.arrow_back_ios_new_rounded,
+        size: 30,
+        color: Colors.orangeAccent
+        ),
+        ),
+    )
+  );
 }
 
 Widget _backgroundCover(BuildContext context) {
@@ -129,7 +144,7 @@ Widget _buttonRegister() {
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 12)),
         child: const Text(
-          'LOGIN',
+          'REGISTRAR',
           style: TextStyle(color: Colors.black),
         )),
   );
@@ -141,11 +156,12 @@ Widget _imageUser() {
       margin: const EdgeInsets.only(top: 60),
       alignment: Alignment.topCenter,
       child: GestureDetector(
-        onTap: (){},
+        onTap: () {},
         child: const CircleAvatar(
           backgroundImage: AssetImage('assets/img/user_profile.png'),
           radius: 50,
-          backgroundColor: Colors.white,),
+          backgroundColor: Colors.white,
+        ),
       ),
     ),
   );

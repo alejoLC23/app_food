@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element, sized_box_for_whitespace
+// ignore_for_file: unused_element, sized_box_for_whitespace, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import 'package:foodyz/src/pages/login/login_controller.dart';
 import 'package:get/get.dart';
@@ -6,10 +6,6 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class LoginPage extends StatelessWidget {
   
-  LoginController con = Get.put(LoginController());
-
-  LoginPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,18 +120,19 @@ Widget _textYourInfo() {
 }
 
 Widget _textDontHaveAccount() {
+  LoginController con = Get.put(LoginController());
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       const Text(
-        'No tienes cuenta',
+        'No tienes cuenta?',
         style: TextStyle(color: Colors.black, fontSize: 15),
       ),
       const SizedBox(
         width: 7,
       ),
       GestureDetector(
-        
+        onTap: () => con.goToRegisterPage(),
         child: const Text('Registrate aquí',
             style: TextStyle(
                 color: Colors.deepOrangeAccent,
